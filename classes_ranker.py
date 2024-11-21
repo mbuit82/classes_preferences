@@ -57,7 +57,7 @@ def solve(solver, constraints):
         return True, solver.model()
     return False, solver.unsat_core()
 
-def solve_consistency(file_name, add_incompleteness=False):
+def solve_consistency(file_name, add_incompleteness=False, add_completeness=False):
     processed_data = process_data(file_name, only_positive_judgements=True)
     if len(processed_data) == 0:
         return f"no data in the file {file_name} so far"
@@ -71,6 +71,8 @@ def solve_consistency(file_name, add_incompleteness=False):
     constraints.append(asymmetry)
     if add_incompleteness:
         constraints.append(z3.Not(completeness))
+    if add_completeness:
+        constraints.append(completeness)
     bsolver = z3.Solver()
     return solve(bsolver, constraints)
     
@@ -121,18 +123,8 @@ def find_topological_order(file_name):
         unsat_core = vmodel
         return unsat_core
 
-file_name = current_dir+'/classes_pairs.csv'
-
-# # STEP 2: run this line (you can run it even if you haven't filled any of the csv out)
-# result = find_topological_order(current_dir+'/classes_pairs.csv')
-# if not isinstance(result, dict):
-#     print(result)
-# else:
-#     print("preferences are self-consistent!")
-# print(result)
-
 def find_incomplete_preferences(file_name):
-    bsat, bmodel = solve_consistency(file_name, add_incompleteness=True)
+    bsat, bmodel = solve_consistency(file_name)
     if not bsat:
         return bmodel
     # can assume we now have a model
@@ -161,9 +153,19 @@ def print_incomplete_preferences(file_name):
         print("there are no incomplete preferences")
     # can assume there are incomplete preferences
     for c1, c2, c3 in incomplete_preferences:
-        print(f"\t{c2}\n{c1}\tv\n\t{c3}\n\n")
+        print(f"\t{c2}\n{c1}\t  v\n\t{c3}\n\n")
     return len(incomplete_preferences)
 
+
+file_name = current_dir+'/classes_pairs_no_401.csv'
+
+# STEP 2: run this block (you can run it even if you haven't filled any of the csv out)
+result = find_topological_order(file_name)
+if not isinstance(result, dict):
+    print(result)
+else:
+    print("preferences are self-consistent!")
+print(result)
 
 print(print_incomplete_preferences(file_name))
     
