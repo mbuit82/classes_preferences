@@ -6,6 +6,6 @@ However in a philosophy class we talked about how some value theorists think tha
 ## How to run
 First put your classes into the `classes` list in the `make_classes_csv.py` file. This will make a csv file with every single pairwise comparison of classes. Even though not all pairwise comparisons are needed to determine a (complete, never mind partial) order, I figured that giving the opportunity to judge every single pairwise comparison would allow for inconsistencies to more easily show up (harder to "keep track" of what one's judged and let oneself be influenced in this way when one only considers two classes at a time). 
 
-After doing that, run the `classes_ranker.py` file. There are two functions there you can run: 
+After doing that, run the functions in the `classes_ranker.py` file you're interested in. (Make sure the name of the csv file matches what's in that file!) There are two functions there you can run: 
 - `find_topological_order` finds a topological order given preferences. This solves for consistency.
 - `print_incomplete_preferences` will find all incomplete preferences (i.e., it will check for every combination of three classes, whether there is a preference between two of them but no preference between each of those and the third) and print them. 
