@@ -162,7 +162,8 @@ def print_incomplete_preferences(file_name):
     # can assume there are incomplete preferences
     for c1, c2, c3 in incomplete_preferences:
         print(f"\t{c2}\n{c1}\tv\n\t{c3}\n\n")
+    return len(incomplete_preferences)
 
 
-print_incomplete_preferences(file_name)
+print(print_incomplete_preferences(file_name))
     
