@@ -157,7 +157,7 @@ def print_incomplete_preferences(file_name):
     return len(incomplete_preferences)
 
 
-file_name = current_dir+'/classes_pairs_no_401.csv'
+file_name = current_dir+'/expectations/classes_pairs.csv'
 
 # STEP 2: run this block (you can run it even if you haven't filled any of the csv out)
 result = find_topological_order(file_name)
