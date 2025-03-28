@@ -93,7 +93,7 @@ def assign_values(bmodel):
         constraints.append(value(Class1) > 0) # lower bound for readability
         for Class2 in Classes_list:
             if bmodel.evaluate(is_better_than(Class1,Class2)) == 1:
-                constraints.append(value(Class1) < value(Class2))
+                constraints.append(value(Class1) > value(Class2)) # NOTE: THIS INVERTS DIRECTION OF RANKING
     vsolver = z3.Solver()
     return solve(vsolver, constraints)
 
@@ -157,15 +157,30 @@ def print_incomplete_preferences(file_name):
     return len(incomplete_preferences)
 
 
-file_name = current_dir+'/expectations/classes_pairs.csv'
+# NOTE: DON'T CHANGE NAME OF THESE. OTHER FILE DEPENDS ON THEM
+preferences_file = current_dir+'/data/preferences.csv'
+expectations_file = current_dir+'/data/expectations.csv'
+# CURRENT_FILE_CHECKING can change tho
+CURRENT_FILE_CHECKING = preferences_file
 
 # STEP 2: run this block (you can run it even if you haven't filled any of the csv out)
-result = find_topological_order(file_name)
+print(f"CURRENT FILE: {CURRENT_FILE_CHECKING}")
+result = find_topological_order(CURRENT_FILE_CHECKING)
 if not isinstance(result, dict):
     print(result)
 else:
-    print("preferences are self-consistent!")
+    print("data is self-consistent!")
 print(result)
 
-print(print_incomplete_preferences(file_name))
+new_comparisons = ""
+counter = 0
+for key in result:
+    for class1 in result[key]:
+        for class2 in result[key]:
+            if class1 != class2 and f"{class2},{class1}," not in new_comparisons:
+                new_comparisons += f"{class1},{class2},\n"
+                counter += 1
+print(new_comparisons)
+print(counter)
+# print(print_incomplete_preferences(CURRENT_FILE_CHECKING))
     

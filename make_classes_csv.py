@@ -57,7 +57,7 @@ classes = [["18.02", "8.01", "24.900", "5.111"], # "21G.401",
            ["6.861", "24.970", "24.260", "24.211"],
            ["24.711", "LING216", "6.121", "18.703"]]
 # put whatever you want the file name and directory to be
-file_name = current_dir+'/expectations/classes_pairs.csv'
+file_name = current_dir+'/classes_pairs.csv'
 
 # STEP 1: make the csv file with all class pairs. 
 # edit this file so that after each pair (e.g. '18.02,8.01'), put your preference between the two
