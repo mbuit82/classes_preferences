@@ -3,6 +3,8 @@ This project originated out of curiosity as a way to see if my preferences for t
 
 However in a philosophy class we talked about how some value theorists think that preferences can be incomplete (in the sense that given three classes a, b, c, I prefer b to c but have no preference with a to c or a to b). This struck me as odd, and none of the examples in class were immediately convincing to me. So I extended this project to see if my preferences for classes are incomplete (verdict: it seems they are). 
 
+I later expanded the project to include my relative expectations of classes, and then a comparison of whether how good I thought classes were lined up with my expectations (verdict: in general yes, with some notable outliers, like Logic I which I enjoyed much more than I thought I would and 24.951 which I enjoyed less than I thought I would). I'm also not sure how consistent the judgements are from semester to semester, so I've left them rather coarse-grained (i.e. if I have no immediate judgement for a pairing I leave it blank). 
+
 ## How to run
 First put your classes into the `classes` list in the `make_classes_csv.py` file. This will make a csv file with every single pairwise comparison of classes. Even though not all pairwise comparisons are needed to determine a (complete, never mind partial) order, I figured that giving the opportunity to judge every single pairwise comparison would allow for inconsistencies to more easily show up (harder to "keep track" of what one's judged and let oneself be influenced in this way when one only considers two classes at a time). Fill this file out according to the instructions at the bottom of the `make_classes_csv.py` file. 
 
